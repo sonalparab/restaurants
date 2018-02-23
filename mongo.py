@@ -1,31 +1,27 @@
 import pymongo
 
 connection = pymongo.MongoClient('homer.stuy.edu')
-db = connection.test
-collection = db.restaurants
+db = connection.leksanovD_parabS
+collection = db.pop
 
-def findByBorough(borough):
-    for entry in collection.find({'borough': borough}):
+def findByAge(age):
+    for entry in collection.find({'age': age}):
         print entry
 
-def findByZip(zipcode):
-    for entry in collection.find({'address.zipcode' : zipcode }):
+def findByNumFemales(females):
+    for entry in collection.find({'females': females }):
         print entry
 
-def findByZipandGrade(zipcode,grade):
-    for entry in collection.find({'address.zipcode' : zipcode, "grades.grade" : grade}):
+def findByNumMales(males):
+    for entry in collection.find({'males': males}):
         print entry                        
 
-def findByZipandScore(zipcode,score):
-    for entry in collection.find({'address.zipcode' : zipcode, "grades.score": {"$lt": score }}):
+def findByNumMalesAndFemales(males, females):
+    for entry in collection.find({'males' : males, "females": females }):
         print entry                        
 
-def findByZipandCuisine(zipcode,cuisine):
-    for entry in collection.find({'address.zipcode' : zipcode, "cuisine": cuisine }):
-        print entry
-        
-findByBorough('Brooklyn')
-findByZip('10282')
-findByZipandGrade('10282','A')
-findByZipandScore('10282',10)
-findByZipandCuisine('10282','American')
+findByAge(45)
+findByNumFemales(1977000)
+findByNumMales(2296000)
+findByNumMalesAndFemales(108000, 247000)
+
